@@ -22,6 +22,11 @@
 }
 
 /* LANDING */
+#hero {
+    background-image: url('https: //s3.amazonaws.com/shecodesio-production/uploads/files/000/054/045/original/poltava-3.jpg?1668548313');
+    background-size: cover;
+}
+
 .mainVideo {
     position: absolute;
     right: 0;

@@ -6,19 +6,322 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Poltava</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        *,
+        :after,
+        :before {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap-absolute-positions {
+            position: relative;
+        }
+
+        /* UTILITY CLASSES */
+
+        .vh-100 {
+            height: 100vh;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* LANDING */
+        #hero {
+            background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/045/original/poltava-3.jpg?1668548313');
+            background-size: cover;
+        }
+
+        .mainVideo {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        .shadowedVideo {
+            width: 100%;
+            background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.40));
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .content {
+            position: absolute;
+            color: #f1f1f1;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .blockquote {
+            max-width: 400px;
+            padding: 250px 50px;
+
+        }
+
+        .cite {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 20px;
+            margin: 10px;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-transform: uppercase;
+            text-align: center;
+
+        }
+
+        .nav {
+            display: grid;
+            font-size: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            align-items: center;
+            margin: 20px 50px;
+
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            text-align: center;
+        }
+
+
+        /* HHHHHHHHHHHHHHHHH */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+            background-color: #d9d9d9;
+        }
+
+        .info-container {
+            margin: 0 200px;
+            gap: 5px 40px;
+            flex-wrap: wrap;
+            color: rgb(19, 122, 88);
+            background-color: #fff;
+            border-radius: 20px;
+            margin-top: 30px;
+            padding: 15px 0;
+        }
+
+        .info {
+            text-align: justify;
+            font-size: 18px;
+            width: 50%;
+            font-style: italic;
+        }
+
+        .picture {
+            max-width: 400px;
+        }
+
+        .img-info {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        h3 {
+            font-style: normal;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            background-color: rgb(19, 122, 88);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .info-container.reverse {
+            flex-direction: row-reverse;
+            background-color: rgb(19, 122, 88);
+            color: #fff;
+        }
+
+        @media (max-width: 1000px) {
+            .info {
+                width: 100%;
+                padding: 5px 20px;
+            }
+
+
+            .img-info {
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .info-container {
+                margin: 10px 50px;
+            }
+        }
+
+        @media (min-width: 700px) and (max-width: 1000px) {
+            .info-container {
+                margin: 10px 70px;
+            }
+        }
+
+        .about-text {
+            margin: 30px;
+            text-align: justify;
+            font-size: 1.5rem;
+        }
+
+        .wiki {
+            color: rgb(19, 122, 88);
+            font-weight: bold;
+        }
+
+        .wiki:hover {
+            text-decoration: underline;
+        }
+
+        #about {
+
+            margin-bottom: 30px;
+        }
+
+        .about-links {
+            font-size: 1.1rem;
+            padding: 0 15px;
+        }
+
+        #gallery {
+            margin-top: 30px;
+        }
+
+        /* GALLERY */
+
+        .container {
+            /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+            overflow: hidden;
+            margin: 0 200px;
+        }
+
+        .panel {
+            background-size: auto 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 80vh;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            flex: 0.5;
+            margin: 10px;
+            position: relative;
+            transition: flex 0.7s ease-in;
+        }
+
+        .panel h3 {
+            font-size: 24px;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            margin: 0;
+            opacity: 0;
+        }
+
+        .panel.active {
+            flex: 5;
+        }
+
+        .panel.active h3 {
+            opacity: 1;
+            transition: opacity 0.3s ease-in 0.4s;
+
+        }
+
+        @media (max-width: 1000px) {
+            .container {
+                margin: 0;
+            }
+        }
+
+
+        /*  FOOOTER   */
+        footer {
+            background-color: #bbb;
+            text-align: center;
+            color: #333;
+            padding: 15px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+        }
+
+        footer p {
+            padding: 10px;
+            /* min-width: 150px; */
+        }
+
+        footer p:last-child {
+            font-family: monospace;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        /* RESPONSIVE */
+        @media screen and (max-width: 426px) {
+            .blockquote {
+                padding: 140px 50px;
+            }
+
+            .nav {
+                margin: 20px 0;
+            }
+
+            .about-text {
+                font-size: 1.25rem;
+            }
+
+            .container {
+                width: 100vw;
+            }
+
+            /* .panel:nth-of-type(4), */
+            .panel:nth-of-type(5),
+            .panel:nth-of-type(6),
+            .panel:nth-of-type(7),
+            .panel:nth-of-type(8),
+            .panel:nth-of-type(9),
+            .panel:nth-of-type(10) {
+                display: none;
+            }
+        }
+
+        @media (min-width: 426px) and (max-width: 769px) {
+
+            .panel:nth-of-type(8),
+            .panel:nth-of-type(9),
+            .panel:nth-of-type(10) {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="wrap-absolute-positions vh-100"
-        style="background-image: url('./img/poltava-3.jpg'); background-size: cover;">
-        <!-- <video autoplay="autoplay" muted="muted" loop="loop" class="mainVideo">
-            <source src="./Poltava aerial photography.mp4" type="video/mp4">
-        </video> -->
-        <!-- <video autoplay="autoplay" loop="loop" class="mainVideo">
-            <source type="video/mp4"
-                src="https://video-iev1-1.xx.fbcdn.net/v/t76.42613-2/193769695_513829239700670_8939014505431259083_n.mp4?_nc_cat=110&vs=6da35dab749881cb&_nc_vs=HBksFQIYKHZpZGVvc19vZXBfYmFja2ZpbGxfcHJvZC84NDk5MTcyMTIwODg3ODMVAALIAQAVABgkR0VfSDlBU3BGSHBXMktnQkFBQUFBQUNwbEtRQWJ2NEdBQUFGFQICyAEASweIEnByb2dyZXNzaXZlX3JlY2lwZQExDXN1YnNhbXBsZV9mcHMAEHZtYWZfZW5hYmxlX25zdWIAIG1lYXN1cmVfb3JpZ2luYWxfcmVzb2x1dGlvbl9zc2ltAChjb21wdXRlX3NzaW1fb25seV9hdF9vcmlnaW5hbF9yZXNvbHV0aW9uAB11c2VfbGFuY3pvc19mb3JfdnFtX3Vwc2NhbGluZwARZGlzYWJsZV9wb3N0X3B2cXMAFQAlABwAACaA98u7gvH1CRUCKAJDMxgLdnRzX3ByZXZpZXccF0BzaAAAAAAAGBhkYXNoX3Y0X2hxMl9mcmFnXzJfdmlkZW8SABgYdmlkZW9zLnZ0cy5jYWxsYmFjay5wcm9kOBJWSURFT19WSUVXX1JFUVVFU1QbCogVb2VtX3RhcmdldF9lbmNvZGVfdGFnBm9lcF9oZBNvZW1fcmVxdWVzdF90aW1lX21zATAMb2VtX2NmZ19ydWxlB3VubXV0ZWQTb2VtX3JvaV9yZWFjaF9jb3VudAM0NjIRb2VtX2lzX2V4cGVyaW1lbnQADG9lbV92aWRlb19pZBAyNzkyNTAyMTg3NDM2NzM0Em9lbV92aWRlb19hc3NldF9pZBAyNzkyNTAyMTgwNzcwMDY4FW9lbV92aWRlb19yZXNvdXJjZV9pZBAyNzkyNTAyMTY3NDM2NzM2HG9lbV9zb3VyY2VfdmlkZW9fZW5jb2RpbmdfaWQPODQ5OTE3MjEyMDg4NzgzDnZ0c19yZXF1ZXN0X2lkACUCHAAlxAEbB4gBcwQyMjIwAmNkCjIwMjAtMDEtMTADcmNiAzQwMANhcHAK0JLRltC00LXQvgJjdBlDT05UQUlORURfUE9TVF9BVFRBQ0hNRU5UE29yaWdpbmFsX2R1cmF0aW9uX3MFMzEwLjUCdHMVcHJvZ3Jlc3NpdmVfZW5jb2RpbmdzAA%3D%3D&ccb=1-7&_nc_sid=189a0e&efg=eyJ2ZW5jb2RlX3RhZyI6Im9lcF9oZCJ9&_nc_ohc=porL4ya7QvcAX96KN9O&_nc_ht=video-iev1-1.xx&oh=00_AfDHPJATQ1itRpCersIsTvbo6KGKaYaRi-IuHhVDbOibvg&oe=63755F0C&_nc_rid=574454700228004">
-        </video> -->
+    <div id="hero" class="wrap-absolute-positions vh-100">
         <div class="shadowedVideo vh-100"></div>
         <div class="content">
             <h1>Welcome to Poltava!</h1>
@@ -96,9 +399,8 @@
                 </p>
             </div>
             <div class="picture">
-                <!-- <img class="img-info" -->
-                <!-- src="https://ua.igotoworld.com/frontend/webcontent/websites/1/images/gallery/5652_800x600_korpusniy_park.jpg" /> -->
-                <img class="img-info" src="./img/poltava-central-square2.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/046/original/poltava-central-square2.jpg?1668548354" />
             </div>
         </div>
 
@@ -116,7 +418,8 @@
                 </p>
             </div>
             <div class="picture">
-                <img class="img-info" src="./img/Будинок_земства_P1230868_пл._Конституції,_2.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/047/original/%D0%91%D1%83%D0%B4%D0%B8%D0%BD%D0%BE%D0%BA_%D0%B7%D0%B5%D0%BC%D1%81%D1%82%D0%B2%D0%B0_P1230868_%D0%BF%D0%BB._%D0%9A%D0%BE%D0%BD%D1%81%D1%82%D0%B8%D1%82%D1%83%D1%86%D1%96%D1%97__2.jpg?1668548385" />
             </div>
         </div>
         <div class="info-container flex-center">
@@ -132,9 +435,8 @@
                 </p>
             </div>
             <div class="picture">
-                <!-- <img class="img-info" -->
-                <!-- src="https://ua.igotoworld.com/frontend/webcontent/websites/1/images/gallery/5652_800x600_korpusniy_park.jpg" /> -->
-                <img class="img-info" src="./img/Біла_альтанка_(ротонда),_Полтава_(2).jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/048/original/%D0%91%D1%96%D0%BB%D0%B0_%D0%B0%D0%BB%D1%8C%D1%82%D0%B0%D0%BD%D0%BA%D0%B0_%28%D1%80%D0%BE%D1%82%D0%BE%D0%BD%D0%B4%D0%B0%29__%D0%9F%D0%BE%D0%BB%D1%82%D0%B0%D0%B2%D0%B0_%282%29.jpg?1668548417" />
             </div>
         </div>
 
@@ -155,7 +457,8 @@
                 </p>
             </div>
             <div class="picture">
-                <img class="img-info" src="./img/Галерея_мистецтв_ім._М._Ярошенка,_Полтава.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/049/original/%D0%93%D0%B0%D0%BB%D0%B5%D1%80%D0%B5%D1%8F_%D0%BC%D0%B8%D1%81%D1%82%D0%B5%D1%86%D1%82%D0%B2_%D1%96%D0%BC._%D0%9C._%D0%AF%D1%80%D0%BE%D1%88%D0%B5%D0%BD%D0%BA%D0%B0__%D0%9F%D0%BE%D0%BB%D1%82%D0%B0%D0%B2%D0%B0.jpg?1668548441" />
             </div>
         </div>
         <div class="info-container flex-center">
@@ -177,9 +480,8 @@
                 </p>
             </div>
             <div class="picture">
-                <!-- <img class="img-info" -->
-                <!-- src="https://ua.igotoworld.com/frontend/webcontent/websites/1/images/gallery/5652_800x600_korpusniy_park.jpg" /> -->
-                <img class="img-info" src="./img/12_8406912c.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/050/original/12_8406912c.jpg?1668548486" />
             </div>
         </div>
 
@@ -203,7 +505,8 @@
                 </p>
             </div>
             <div class="picture">
-                <img class="img-info" src="./img/1920px-Monastery_of_Feast_of_the_Cross_Poltava_DJI_003811535151.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/051/original/1920px-Monastery_of_Feast_of_the_Cross_Poltava_DJI_003811535151.jpg?1668548512" />
             </div>
         </div>
         <div class="info-container flex-center">
@@ -221,9 +524,8 @@
                 </p>
             </div>
             <div class="picture">
-                <!-- <img class="img-info" -->
-                <!-- src="https://ua.igotoworld.com/frontend/webcontent/websites/1/images/gallery/5652_800x600_korpusniy_park.jpg" /> -->
-                <img class="img-info" src="./img/mvba.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/052/original/mvba.jpg?1668548536" />
             </div>
         </div>
 
@@ -249,7 +551,8 @@
                 </p>
             </div>
             <div class="picture">
-                <img class="img-info" src="./img/7633_800x600_Poltava_Theatre.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/053/original/7633_800x600_Poltava_Theatre.jpg?1668548565" />
             </div>
         </div>
         <div class="info-container flex-center">
@@ -271,9 +574,8 @@
                 </p>
             </div>
             <div class="picture">
-                <!-- <img class="img-info" -->
-                <!-- src="https://ua.igotoworld.com/frontend/webcontent/websites/1/images/gallery/5652_800x600_korpusniy_park.jpg" /> -->
-                <img class="img-info" src="./img/img.jpg" />
+                <img class="img-info"
+                    src="https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/054/original/img.jpg?1668548592" />
             </div>
         </div>
     </div>
@@ -286,11 +588,13 @@
         <h2>Gallery</h2>
     </div>
     <div class="container vh-100 flex-center">
-        <div class="panel active" style="background-image: url('img/17_main-v1583938020-768x538.jpg')">
+        <div class="panel active"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/055/original/17_main-v1583938020-768x538.jpg?1668548931')">
             <h3>Explore Poltava</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/61_main-v1577256613.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/056/original/61_main-v1577256613.jpg?1668548959')">
             <h3>Local History Museum</h3>
         </div>
 
@@ -299,31 +603,38 @@
             <h3>Soborna Street</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/2104.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/057/original/2104.jpg?1668548999')">
             <h3>Monument of Taras Shevchenko</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/7710_800x600_galushka.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/058/original/7710_800x600_galushka.jpg?1668549021')">
             <h3>Poltava Galushka Monument</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/музей-полтава-2.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/059/original/%D0%BC%D1%83%D0%B7%D0%B5%D0%B9-%D0%BF%D0%BE%D0%BB%D1%82%D0%B0%D0%B2%D0%B0-2.jpg?1668549051')">
             <h3>Museum-Estate of Kotlyarevsky</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/t-poltava-kruglaya-square-1-800.webp')">
+        <div class="panel"
+            style="background-image: url('https://tripandtrep.com/Images/world/ukraine/ukraine-172/big/b-poltava-kruglaya-square-1.jpg')">
             <h3>Round Square</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/t-poltava-kruglaya-square-2-800.webp')">
+        <div class="panel"
+            style="background-image: url('https://tripandtrep.com/Images/world/ukraine/ukraine-172/big/b-poltava-kruglaya-square-2.jpg')">
             <h3>Corpus Park</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/eb9b728dd3914e9f22fdd2b6e3480abd.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/060/original/eb9b728dd3914e9f22fdd2b6e3480abd.jpg?1668549192')">
             <h3>Rotunda of Friendship</h3>
         </div>
 
-        <div class="panel" style="background-image: url('img/13_main-v1646657971.jpg')">
+        <div class="panel"
+            style="background-image: url('https://s3.amazonaws.com/shecodesio-production/uploads/files/000/054/061/original/13_main-v1646657971.jpg?1668549210')">
             <h3>Nebesna Sotnya Street</h3>
         </div>
 
@@ -334,7 +645,22 @@
         <p><b>November 2022</b></p>
         <p>Coded by Olha Fokanova</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        const panels = document.querySelectorAll(".panel");
+        panels.forEach((panel) => {
+            panel.addEventListener("click", () => {
+                removeActiveClasses();
+                panel.classList.add("active");
+            });
+        });
+
+        function removeActiveClasses() {
+            panels.forEach((panel) => {
+                panel.classList.remove("active");
+            });
+        }
+
+    </script>
 </body>
 
 </html>
